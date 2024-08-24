@@ -6,15 +6,15 @@ def index(request):
     return render(request, 'index.html')
 
 
-def about(request):
-    return render(request, 'about.html')
+def chamame(request):
+    return render(request, 'chamame.html')
 
 
-def post(request):
-    return render(request, 'post.html')
+def ibera(request):
+    return render(request, 'ibera.html')
 
-def contact (request):
-    return render(request, 'contact.html')
+def pesca (request):
+    return render(request, 'pesca.html')
 
 def padre(request):
     return render(request,'padre.html')

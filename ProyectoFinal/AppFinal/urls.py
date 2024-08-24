@@ -1,11 +1,11 @@
 from django.urls import path
-from AppFinal.views import index,about,post, contact, padre
+from AppFinal.views import index,chamame,ibera, pesca, padre
 
 urlpatterns = [
     path('', index, name='index'),
-    path('about/', about, name='about'),
-    path('post/', post  , name='post'),
-    path('contact/', contact,name='contact'),
+    path('chamame/', chamame, name='chamame'),
+    path('ibera/', ibera, name='ibera'),
+    path('pesca/',pesca,name='pesca'),
     path('padre/', padre, name="padre")
     
 ]
