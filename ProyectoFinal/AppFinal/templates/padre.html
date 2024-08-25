@@ -78,10 +78,13 @@
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ibera' %}">Reserva Natural</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'chamame' %}">Festival del Chamamé</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'chamame' %}">Chamamé</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'pesca' %}">Festival de la Pesca</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'pesca' %}">Pesca del Dorado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'carnaval' %}">Carnaval</a>
                 </li>
             </ul>
         </div>
@@ -114,13 +117,13 @@
 
 
 <!-- Footer-->
-<footer class="border-top">
-    <div class="container px-4 px-lg-5">
+<footer class="border-top"  style="background-color: black;">
+    <div class="container px-4 px-lg-5" >
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="https://x.com/CorrientesGob">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
@@ -128,7 +131,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="https://www.facebook.com/corrientesgob?locale=es_LA">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
@@ -136,11 +139,17 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="https://github.com/lacattaneo">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                             </span>
+                        </a>
+                    </li>
+                    <!-- acceso a informacion mia -->
+                    <li class="list-inline-item">
+                        <a href="{% url 'yo' %}">
+                            <img src="{% static 'AppFinal/assets/img/index/yoFooter.jpg' %}" alt="Enlace Adicional" style="height: 40px; width: 40px; border-radius: 50%;">
                         </a>
                     </li>
                 </ul>

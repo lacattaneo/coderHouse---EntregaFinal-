@@ -18,3 +18,9 @@ def pesca (request):
 
 def padre(request):
     return render(request,'padre.html')
+
+def carnaval(request):
+    return render(request,'carnaval.html')
+
+def yo(request):
+    return render(request, 'yo.html')
