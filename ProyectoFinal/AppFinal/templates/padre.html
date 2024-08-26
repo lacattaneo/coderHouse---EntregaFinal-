@@ -16,46 +16,80 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'AppFinal/css/styles.css' %}" rel="stylesheet" />
     <style>
-        /* Asegúrate de que el contenedor del contenido principal no se solape con la barra de navegación */
         body {
-            padding-top: 70px; /* Ajusta el valor si es necesario para que el contenido no quede debajo de la barra de navegación */
+            padding-top: 70px;
         }
-
-        /* Cambiar color del texto de navegación a blanco */
         .navbar-nav .nav-link {
             color: white !important;
+            font-size: 1rem; /* Tamaño estándar para los enlaces del menú */
         }
-
         .navbar-brand {
             color: white !important;
         }
-
-        /* Fondo de la barra de navegación */
         .navbar-light {
             background-color: black;
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 10; /* Asegura que el navbar esté siempre encima de otros elementos */
+            z-index: 10;
         }
-
-        /* Estilo del encabezado principal */
         .masthead {
             background-size: cover;
             background-position: center;
         }
-
-        /* Personalizar los colores de los enlaces de pie de página */
         .list-inline-item a {
             color: #007bff;
         }
-
-        /* Imagen dentro de la sección de vista previa */
         .post-preview img {
             width: 100%;
             height: auto;
             margin-bottom: 15px;
             border-radius: 5px;
+        }
+        /* Estilos personalizados para los botones de Log In y Registro */
+        .nav-item .btn-login,
+        .nav-item .btn-registro {
+            padding: 4px 10px; /* Reducir el padding para hacerlos más pequeños */
+            border-radius: 20px;
+            font-size: 0.75rem; /* Reducir el tamaño de fuente */
+            font-weight: 600;
+            color: #fff !important;
+        }
+        .btn-login {
+            background-color: #00b846; /* Verde */
+            border: 0.3px solid #000000;
+        
+        }
+        .btn-registro {
+            background-color: #ff0000; /* Azul */
+            border: 1px solid #000000;
+        }
+        .btn-login:hover,
+        .btn-registro:hover {
+            background-color: #a200ff; /* Azul más oscuro */
+            color: #a200ff;
+        }
+
+        /* Ajuste para que los botones sean más pequeños que el resto del nav */
+        .nav-item .nav-link.btn-login,
+        .nav-item .nav-link.btn-registro {
+            padding: 0.1rem 0.3rem; /* Ajustar el padding para reducir el tamaño */
+            font-size: 0.25rem; /* Tamaño de fuente más pequeño */
+        }
+
+        .nav-item .nav-link {
+            padding: 1rem 1.5rem; /* Padding estándar para los enlaces del menú */
+        }
+
+        /* Estilo para el contenedor de la imagen y el texto de navegación */
+        .navbar-brand img {
+            height: 50px; /* Ajusta el tamaño según sea necesario */
+            margin-right: 1px; /* Espacio entre la imagen y el texto */
+        }
+
+        /* Ajuste para alinear los botones a la derecha */
+        .navbar-nav.ml-auto {
+            margin-left: auto;
         }
     </style>
 </head>
@@ -64,13 +98,15 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-black" id="mainNav">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="{% url 'index' %}">Turismo Corrientes</a>
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'AppFinal/assets/img/index/logo.jpg' %}" alt="Logo">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <ul class="navbar-nav me-auto py-4 py-lg-0"> <!-- Enlaces a la izquierda -->
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'index' %}">Inicio</a>
                 </li>
@@ -87,24 +123,17 @@
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'carnaval' %}">Carnaval</a>
                 </li>
             </ul>
+            <ul class="navbar-nav ms-auto py-4 py-lg-0"> <!-- Botones a la derecha -->
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4 btn-login" href="{% url 'loginUsuario' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4 btn-registro" href="{% url 'registroUsuario' %}">Registro</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
-
-
-    <!-- Page Header-->
-    <header class="masthead" style="background-image: url('{% static 'AppFinal/assets/img/index/puente.jpg' %}')">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
-                        <h1>Turismo en Corrientes</h1>
-                        <span class="subheading">Descubre la naturaleza, la cultura y la aventura en Corrientes</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
 
 

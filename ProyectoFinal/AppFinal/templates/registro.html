@@ -1,0 +1,71 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<style>
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+    .form-container h2 {
+        text-align: center;
+        color: #333;
+    }
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-container .form-group {
+        margin-bottom: 15px;
+    }
+    .form-container .form-group label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        display: block;
+    }
+    .form-container .form-group input,
+    .form-container .form-group select,
+    .form-container .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .form-container .form-group input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .form-container .form-group input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Registro de Usuario</h2>
+
+    <form method="post" action="{% url 'registroUsuario' %}">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Registrarse">
+    </form>
+</div>
+
+{% endblock %}
