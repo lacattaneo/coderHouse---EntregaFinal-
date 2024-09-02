@@ -16,15 +16,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'AppFinal/css/styles.css' %}" rel="stylesheet" />
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        .content {
-            flex: 1;
-        }
         body {
             padding-top: 70px;
         }
@@ -99,54 +90,93 @@
         .navbar-nav.ml-auto {
             margin-left: auto;
         }
+        
+        /* Estilo para el botón de comprar entradas */
+        .btn-comprar-entradas {
+            background-color: #ffcc00;
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-comprar-entradas:hover {
+            background-color: #ff9900;
+            color: white;
+        }
+
+        /* Estilo personalizado para el botón de Perfil */
+        .nav-item .btn-perfil {
+            background-color: #007bff; /* Azul */
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff !important;
+            border: 1px solid #000000;
+        }
+
+        .nav-item .btn-perfil:hover {
+            background-color: #0056b3; /* Azul más oscuro */
+            color: #fff;
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black" id="mainNav">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="{% url 'index' %}">
-                <img src="{% static 'AppFinal/assets/img/index/logo.jpg' %}" alt="Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav me-auto py-4 py-lg-0"> <!-- Enlaces a la izquierda -->
+    
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-black" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'AppFinal/assets/img/index/logo.jpg' %}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav me-auto py-4 py-lg-0"> <!-- Enlaces a la izquierda -->
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'index' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ibera' %}">Reserva Natural</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'chamame' %}">Chamamé</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'pesca' %}">Pesca del Dorado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'carnaval' %}">Carnaval</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto py-4 py-lg-0"> <!-- Botones a la derecha -->
+                {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'index' %}">Inicio</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4 btn-perfil" href="{% url 'perfilUsuario' %}">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ibera' %}">Reserva Natural</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4 btn-login" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4 btn-login" href="{% url 'loginUsuario' %}">Log in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'chamame' %}">Chamamé</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4 btn-registro" href="{% url 'registroUsuario' %}">Registro</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'pesca' %}">Pesca del Dorado</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'carnaval' %}">Carnaval</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto py-4 py-lg-0"> <!-- Botones a la derecha -->
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link px-lg-3 py-3 py-lg-4 btn-login" href="{% url 'logout' %}">Cerrar Sesión</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link px-lg-3 py-3 py-lg-4 btn-login" href="{% url 'loginUsuario' %}">Log in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-lg-3 py-3 py-lg-4 btn-registro" href="{% url 'registroUsuario' %}">Registro</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
+                {% endif %}
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Main Content -->
     <div class="content">

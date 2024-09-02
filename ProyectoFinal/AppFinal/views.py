@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import FormularioRegistro, FormularioLogin, SeleccionarEventoForm
 from AppFinal.models import Usuario, CompraEntrada
+from django.db.models import Sum
 
 def index(request):
     return render(request, 'index.html')
@@ -95,7 +96,18 @@ def comprarEntrada(request):
 def confirmacionCompra(request):
     return render(request, 'confirmacionCompra.html')
 
+@login_required
+def resumenCompras(request):
+    if not request.user.is_authenticated:
+        return redirect('loginUsuario')  # Redirige si el usuario no está autenticado
+
+    compras = CompraEntrada.objects.filter(usuario=request.user)
+    context = {'compras': compras}
+    return render(request, 'resumenCompras.html', context)
 
 
-
+@login_required
+def perfilUsuario(request):
+    usuario = request.user
+    return render(request, 'perfilUsuario.html', {'usuario': usuario})
 

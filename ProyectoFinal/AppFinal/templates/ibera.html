@@ -1,10 +1,35 @@
 {% extends 'padre.html' %}
 {% load static %}
 {% block contenidoQueCambia %}
+<style>
+    .btn-comprar-entradas {
+            background-color: #ffcc00;
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-comprar-entradas:hover {
+            background-color: #ff9900;
+            color: white;
+        }
+</style>
 
 <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
 
 <h2>Reserva del Iberá: Un Tesoro Natural en Corrientes, Argentina</h2>
+
+<div> <!-- este es un divisior para el boton de compras de entradas-->
+
+    <a href="{% url 'comprarEntrada' %}" class="btn-comprar-entradas">Comprar Entradas</a>
+
+</div>
 
 <p>La Reserva del Iberá es uno de los humedales más importantes y extensos del mundo, ubicado en el corazón de la provincia de Corrientes, Argentina. Este paraíso natural es hogar de una biodiversidad asombrosa, que incluye especies emblemáticas como el yacaré, el ciervo de los pantanos, el aguará guazú y más de 350 especies de aves.</p>
 
@@ -34,6 +59,12 @@
 <br><br>
 <p>Visitar la Reserva del Iberá es sumergirse en un mundo donde la naturaleza reina y la vida fluye al ritmo de sus aguas. Es una invitación a descubrir la belleza oculta de Corrientes y a ser parte de un esfuerzo global por preservar uno de los ecosistemas más valiosos de nuestro planeta.</p>
 
+<a href="{% url 'comprarEntrada' %}" class="btn-comprar-entradas">Comprar Entradas</a>
 </div>
+
+<!-- este es un divisior para el boton de compras de entradas-->
+
+
+
 
 {% endblock %}

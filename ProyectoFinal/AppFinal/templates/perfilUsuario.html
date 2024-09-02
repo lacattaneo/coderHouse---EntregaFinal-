@@ -1,0 +1,21 @@
+{% extends 'padre.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+
+    <h2>Datos del Usuario</h2>
+
+    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ usuario.apellido }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+    <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+    <p><strong>Nacionalidad:</strong> {{ usuario.nacionalidad }}</p>
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'resumenCompras' %}" class="btn-comprar-entradas">Ver Resumen de Compras</a>
+    </div>
+
+</div>
+
+{% endblock %}
