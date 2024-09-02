@@ -1,5 +1,5 @@
 from django.urls import path
-from AppFinal.views import index,chamame,ibera, pesca, padre, carnaval,yo,registroUsuario, loginUsuario, perfilUsuario
+from AppFinal.views import index,chamame,ibera, pesca, padre, carnaval,yo,registroUsuario, loginUsuario,loginPagina, comprarEntrada,perfilUsuario,userLogout, confirmacionCompra
 
 urlpatterns = [
     path('', index, name='index'),
@@ -10,6 +10,10 @@ urlpatterns = [
     path('carnaval/', carnaval, name="carnaval"),
     path('yo/', yo, name="yo"),
     path('registroUsuario/', registroUsuario, name='registroUsuario'),
-    path('loginUsuario', loginUsuario, name='loginUsuario'),
-    path('perfilUsuario', perfilUsuario, name='perfilUsuario'),
+    path('loginUsuario/', loginUsuario, name='loginUsuario'),
+    path('loginPagina/', loginPagina, name='loginPagina'),
+    path('perfilUsuario/', perfilUsuario, name='perfilUsuario'),
+    path('logout/', userLogout, name='logout'),
+    path('comprarEntrada/', comprarEntrada, name='comprarEntrada'),
+    path('confirmacionCompra/',confirmacionCompra, name='confirmacionCompra')
 ]

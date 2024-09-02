@@ -1,52 +1,24 @@
 from django import forms
-from .models import Usuario
+from AppFinal.models import Usuario, Evento, CompraEntrada
 
-class FormularioRegistro(forms.Form):
-        nombre = forms.CharField(
-                label="Nombre",
-                max_length=100,
-                widget=forms.TextInput(attrs={'placeholder': 'Nombre'}))
-        
-        apellido = forms.CharField(
-                label="Apellido",
-                max_length=100,
-                widget=forms.TextInput(attrs={'placeholder': 'Apellido'}))
-        
-        email = forms.EmailField(
-                label="Email",
-                max_length=100,
-                widget=forms.TextInput(attrs={'placeholder': 'Correo Electronico'}))
+class FormularioRegistro(forms.ModelForm):
+        contraseña = forms.CharField(widget=forms.PasswordInput)
 
-        telefono = forms.IntegerField(
-                label="telefono",
-                widget=forms.TextInput(attrs={'placeholder': 'telefono'}))
-
-        nacionalidad = forms.CharField(
-                label="nacionalidad",
-                max_length=100,
-                widget=forms.TextInput(attrs={'placeholder': 'nacionalidad'}))
-        
-        contraseña = forms.CharField(
-                label="Contraseña",
-                max_length=100,
-                widget=forms.PasswordInput(attrs={'placeholder': 'comtraseña'}))
-
-        
+        class Meta:
+                model = Usuario
+                fields = ['nombre', 'apellido', 'email', 'telefono', 'nacionalidad', 'contraseña']
 
 class FormularioLogin(forms.Form):
-        nombre = forms.CharField(
-                label="Nombre",
-                max_length=100,
-                widget=forms.TextInput(attrs={'placeholder': 'nombre'}))
-        
-        contraseña = forms.CharField(
-                label="Contraseña",
-                max_length=100,
-                widget=forms.PasswordInput(attrs={'placeholder': 'comtraseña'}))
-        
-
-        
-        
+        email = forms.EmailField(label='Email')
+        contraseña = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
 
 
-
+class SeleccionarEventoForm(forms.Form):
+        evento = forms.ModelChoiceField(
+                queryset=Evento.objects.all(),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                label='Seleccionar Evento')
+        cantidad = forms.IntegerField(
+                min_value=1,
+                widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cantidad de Entradas'}),
+                label='Cantidad de Entradas')

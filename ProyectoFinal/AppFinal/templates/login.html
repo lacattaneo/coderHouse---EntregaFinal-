@@ -18,6 +18,7 @@
     .login-container form {
         display: flex;
         flex-direction: column;
+        align-items: center; /* Centra los elementos */
     }
     .login-container .form-group {
         margin-bottom: 15px;
@@ -34,22 +35,55 @@
         border-radius: 4px;
         box-sizing: border-box;
     }
-    .login-container .form-group input[type="submit"] {
+    .login-container .form-group input[type="submit"],
+    .login-container .form-group .btn-register {
         background-color: #007bff;
         color: white;
-        border: none;
+        border: 1px solid #007bff; /* Borde con el color del botón */
         padding: 10px;
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
+        margin: 5px; /* Espacio entre botones */
+        text-align: center;
+        display: inline-block;
+        text-decoration: none; /* Elimina el subrayado del enlace */
     }
-    .login-container .form-group input[type="submit"]:hover {
+    .login-container .form-group input[type="submit"]:hover,
+    .login-container .form-group .btn-register:hover {
         background-color: #0056b3;
+    }
+    .login-container .form-group .btn-register {
+        background-color: red; /* Color de fondo del botón Registrar */
+        border: 1px solid darkred; /* Borde del botón Registrar */
+    }
+    .login-container .form-group .btn-register:hover {
+        background-color: darkred; /* Color de fondo al pasar el ratón */
+        border: 1px solid red; /* Borde al pasar el ratón */
+    }
+    .error {
+        color: red;
+        font-size: 0.875rem;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center; /* Centra los botones */
+        gap: 10px; /* Espacio entre botones */
     }
 </style>
 
 <div class="login-container">
     <h2>Iniciar Sesión</h2>
+
+    {% if form.non_field_errors %}
+        <div class="error">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <form method="post" action="{% url 'loginUsuario' %}">
         {% csrf_token %}
@@ -62,7 +96,10 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <input type="submit" value="Iniciar Sesión">
+        <div class="button-container">
+            <input type="submit" value="Iniciar Sesión">
+            <a href="{% url 'registroUsuario' %}" class="btn-register" style="background-color: rgb(255, 0, 0);">Registrar</a>
+        </div>
     </form>
 </div>
 
