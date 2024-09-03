@@ -6,21 +6,19 @@
 
     <h2>Resumen de Compras</h2>
 
-    {% if compras %}
+    {% if resumen %}
         <table style="width: 100%; border-collapse: collapse;">
             <thead>
                 <tr>
                     <th style="border: 1px solid #000; padding: 8px;">Evento</th>
                     <th style="border: 1px solid #000; padding: 8px;">Cantidad</th>
-                    <th style="border: 1px solid #000; padding: 8px;">Fecha de Compra</th>
                 </tr>
             </thead>
             <tbody>
-                {% for compra in compras %}
+                {% for item in resumen %}
                     <tr>
-                        <td style="border: 1px solid #000; padding: 8px;">{{ compra.evento.nombre }}</td>
-                        <td style="border: 1px solid #000; padding: 8px;">{{ compra.cantidad }}</td>
-                        <td style="border: 1px solid #000; padding: 8px;">{{ compra.fecha_compra }}</td>
+                        <td style="border: 1px solid #000; padding: 8px;">{{ item.evento__nombre }}</td>
+                        <td style="border: 1px solid #000; padding: 8px;">{{ item.total_entradas }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

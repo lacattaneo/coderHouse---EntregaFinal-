@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .forms import FormularioRegistro, FormularioLogin, SeleccionarEventoForm
-from AppFinal.models import Usuario, CompraEntrada
+from AppFinal.models import Usuario, CompraEntrada, Evento
 from django.db.models import Sum
 
 def index(request):
@@ -81,15 +81,24 @@ def userLogout(request):
 
 @login_required
 def comprarEntrada(request):
+    eventos = Evento.objects.all()  # Obtener todos los eventos con sus precios
     if request.method == 'POST':
         form = SeleccionarEventoForm(request.POST)
         if form.is_valid():
-            # Procesar la compra de la entrada aquí
+            evento = form.cleaned_data['evento']
+            cantidad = form.cleaned_data['cantidad']
+            
+            # Crear un registro de CompraEntrada
+            CompraEntrada.objects.create(
+                usuario=request.user,
+                evento=evento,
+                cantidad=cantidad
+            )
             return redirect('confirmacionCompra')  # Redirige a la página de confirmación
     else:
         form = SeleccionarEventoForm()
 
-    return render(request, 'comprarEntrada.html', {'form': form})
+    return render(request, 'comprarEntrada.html', {'form': form, 'eventos': eventos})
 
 
 
@@ -101,9 +110,15 @@ def resumenCompras(request):
     if not request.user.is_authenticated:
         return redirect('loginUsuario')  # Redirige si el usuario no está autenticado
 
+    # Obtener todas las compras del usuario actual
     compras = CompraEntrada.objects.filter(usuario=request.user)
-    context = {'compras': compras}
+    
+    # Agrupar las compras por evento y contar las entradas
+    resumen = compras.values('evento__nombre').annotate(total_entradas=Sum('cantidad'))
+
+    context = {'resumen': resumen}
     return render(request, 'resumenCompras.html', context)
+
 
 
 @login_required
